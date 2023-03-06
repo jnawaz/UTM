@@ -34,7 +34,16 @@ struct ContentView: View {
     @Environment(\.openURL) var openURL
     
     var body: some View {
-        VMNavigationListView()
+//        VMNavigationListView()
+        Button {
+            let firstVM = data.virtualMachines[0]
+            data.run(vm: firstVM)
+        } label: {
+            HStack{
+                Image(systemName: "play.fill")
+                Text("Run VM")
+            }
+        }
         .overlay(data.showSettingsModal ? AnyView(EmptyView()) : AnyView(BusyOverlay()))
         #if os(macOS)
         .frame(minWidth: 800, idealWidth: 1200, minHeight: 600, idealHeight: 800)
